@@ -39,7 +39,7 @@ void distanciaSensor()
     viraParar();
     delay(1000);
     viraDireita();
-    delay(950);
+    delay(475);
     viraParar();
     delay(1000);
   } else if(distancia<10){
@@ -48,7 +48,7 @@ void distanciaSensor()
     re();
     delay(1000);
     viraDireita();
-    delay(950);
+    delay(475);
     viraParar();
     delay(1000);
   } else {
