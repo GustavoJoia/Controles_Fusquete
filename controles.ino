@@ -4,6 +4,8 @@ int IN2 = 5 ;
 int IN3 = 6 ;
 int IN4 = 7 ;
 int distancia = 0;
+
+//echo - 10, trigger - 11
 void  setup () {
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
@@ -35,22 +37,15 @@ void distanciaSensor()
 {
   Serial.println(0.01723 * readUltrasonicDistance(8, 9));
   distancia = 0.01723 * readUltrasonicDistance(8, 9);
-  if (distancia < 28) {
-    viraParar();
-    delay(1000);
-    viraDireita();
-    delay(475);
-    viraParar();
-    delay(1000);
-  } else if(distancia<10){
+  if (distancia < 15) {
     viraParar();
     delay(1000);
     re();
-    delay(1000);
-    viraDireita();
-    delay(475);
+    delay(250);
     viraParar();
     delay(1000);
+    viraDireita();
+    delay(900);
   } else {
     frente();
   }
@@ -69,7 +64,7 @@ void frente(){
 void re(){
   //Roda direita
   digitalWrite (IN1, 0);
-  digitalWrite (IN2, 1 );
+  digitalWrite (IN2, 1);
   //Roda Esquerda
   digitalWrite (IN3, 0);
   digitalWrite (IN4, 1);
@@ -86,7 +81,7 @@ void viraDireita(){
 void viraEsquerda(){
   //Roda direita
   digitalWrite (IN1, 0);
-  digitalWrite (IN2, 0 );
+  digitalWrite (IN2, 1);
   //Roda Esquerda
   digitalWrite (IN3, 1);
   digitalWrite (IN4, 0);
