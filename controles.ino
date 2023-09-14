@@ -5,6 +5,7 @@ int IN3 = 6 ;
 int IN4 = 7 ;
 int distancia = 0;
 
+//echo - 10, trigger - 11
 void  setup () {
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
@@ -57,7 +58,18 @@ void distanciaSensor()
     viraEsquerda();
     delay(900);
     
-    } else {
+    } else if(distanciaDireita == distanciaEsquerda ){
+
+      viraParar();
+    delay(1000);
+    re();
+    delay(250);
+    viraParar();
+    delay(1000);
+    viraDireita();
+    delay(900);
+      
+      }else {
     frente();
   }
   delay(10); // Delay a little bit to improve simulation performance
