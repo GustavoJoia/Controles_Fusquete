@@ -36,8 +36,9 @@ long readUltrasonicDistance(int triggerPin, int echoPin)
 void distanciaSensor()
 {
   Serial.println(0.01723 * readUltrasonicDistance(8, 9));
-  distancia = 0.01723 * readUltrasonicDistance(8, 9);
-  if (distancia < 15) {
+  double distanciaDireita = 0.01723 * readUltrasonicDistance(8, 9);
+  double distanciaEsquerda = 0.01723 * readUltrasonicDistance(11, 10);
+  if (distanciaDireita <= 15 && distanciaEsquerda > 15) {
     viraParar();
     delay(1000);
     re();
@@ -46,7 +47,18 @@ void distanciaSensor()
     delay(1000);
     viraDireita();
     delay(900);
-  } else {
+  } else if(distanciaDireita > 15 && distanciaEsquerda <= 15){
+    
+    viraParar();
+    delay(1000);
+    re();
+    delay(250);
+    viraParar();
+    delay(1000);
+    viraEsquerda();
+    delay(900);
+    
+    } else {
     frente();
   }
   delay(10); // Delay a little bit to improve simulation performance
