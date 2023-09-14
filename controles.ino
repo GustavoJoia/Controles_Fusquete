@@ -5,7 +5,6 @@ int IN3 = 6 ;
 int IN4 = 7 ;
 int distancia = 0;
 
-//echo - 10, trigger - 11
 void  setup () {
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
