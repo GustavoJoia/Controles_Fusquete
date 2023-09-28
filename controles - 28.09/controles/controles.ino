@@ -4,6 +4,7 @@ int IN2 = 5 ;
 int IN3 = 6 ;
 int IN4 = 7 ;
 int distancia = 0;
+int tempo = 620;
 
 //echo - 10, trigger - 11
 void  setup () {
@@ -12,9 +13,11 @@ void  setup () {
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
   Serial.begin( 9600 );
+ 
 
 }
 void  loop () {
+  
   distanciaSensor();
  
 }
@@ -52,30 +55,27 @@ void distanciaSensor()
     
     if(distanciaE > distanciaD && distanciaD < 15){
       Serial.println("Virando pra esquerda");
-      re();
-      delay(200);
+
       viraParar();
       delay(1000);
       viraDireita();
-      delay(800);
+      delay(tempo);
       
     } else if(distanciaE < distanciaD && distanciaE < 15){
       Serial.println("Virando pra direita");
-      re();
-      delay(200);
+
       viraParar();
       delay(1000);
       viraEsquerda();
-      delay(800);
+      delay(tempo);
       
     } else if(distanciaE == distanciaD){
-      Serial.println("Virando pra esquerda");
-      re();
-      delay(200);
+      Serial.println("Virando pra direita");
+   
       viraParar();
       delay(1000);
-      viraDireita();
-      delay(800);  
+      viraEsquerda();
+      delay(tempo);  
     }
     
   } else {
