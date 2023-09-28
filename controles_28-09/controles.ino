@@ -35,42 +35,51 @@ long readUltrasonicDistance(int triggerPin, int echoPin)
 
 void distanciaSensor()
 {
-  Serial.println(0.01723 * readUltrasonicDistance(8, 9));
-  double distanciaDireita = 0.01723 * readUltrasonicDistance(8, 9);
-  double distanciaEsquerda = 0.01723 * readUltrasonicDistance(11, 10);
-  if (distanciaDireita <= 15 && distanciaEsquerda > 15) {
-    viraParar();
-    delay(1000);
-    re();
-    delay(250);
-    viraParar();
-    delay(1000);
-    viraDireita();
-    delay(900);
-  } else if(distanciaDireita > 15 && distanciaEsquerda <= 15){
-    
-    viraParar();
-    delay(1000);
-    re();
-    delay(250);
-    viraParar();
-    delay(1000);
-    viraEsquerda();
-    delay(900);
-    
-    } else if(distanciaDireita == distanciaEsquerda ){
 
-      viraParar();
-    delay(1000);
-    re();
-    delay(250);
+  int distanciaD = 0.01723 * readUltrasonicDistance(8, 9);
+  int distanciaE = 0.01723 * readUltrasonicDistance(11, 10);
+
+  Serial.println("======================");
+  Serial.println("Direita:");
+  Serial.println(distanciaD);
+  Serial.println("Esquerda:");
+  Serial.println(distanciaE);
+  
+  if (distanciaE <= 15 || distanciaD <= 15) {
+    
     viraParar();
     delay(1000);
-    viraDireita();
-    delay(900);
+    
+    if(distanciaE > distanciaD && distanciaD < 15){
+      Serial.println("Virando pra esquerda");
+      re();
+      delay(200);
+      viraParar();
+      delay(1000);
+      viraDireita();
+      delay(800);
       
-      }else {
-    frente();
+    } else if(distanciaE < distanciaD && distanciaE < 15){
+      Serial.println("Virando pra direita");
+      re();
+      delay(200);
+      viraParar();
+      delay(1000);
+      viraEsquerda();
+      delay(800);
+      
+    } else if(distanciaE == distanciaD){
+      Serial.println("Virando pra esquerda");
+      re();
+      delay(200);
+      viraParar();
+      delay(1000);
+      viraDireita();
+      delay(800);  
+    }
+    
+  } else {
+    frente();  
   }
   delay(10); // Delay a little bit to improve simulation performance
 }
